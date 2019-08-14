@@ -1,21 +1,21 @@
 body => { 
-  let alerts = body.alerts.filter(x => x.labels.alertname != 'DeadMansSwitch');
+  let alerts = body.alerts.filter(x => x.labels.alertname != 'DeadMansSwitch' && x.labels.alertname != 'Watchdog');
   if (alerts.length < body.alerts.length) {
-    // has DeadMansSwitch
+    // has DeadMansSwitch or Watchdog
     if (global.watchDog) {
       global.clearTimeout(watchDog);
     }
-    this.log('skip DeadMansSwitch alerts...');
+    this.log('skip Watchdog alerts...');
     global.watchDog = setTimeout(async () => {
       try {
-        this.log('no watch dog, trigger DeadMansSwitch warning.');
+        this.log('no watch dog, trigger Watchdog warning.');
         let res = await this.axios({
           method: 'post',
           url: this.url,
           headers: { 'X-Zoom-Token': this.token, 'Content-Type': 'application/json'},
           data: {
             title: `<p><label style=\"color:red;\">${this.title}</label></p>`,
-            summary: "<p>DeadMansSwitch is missing!</p>",
+            summary: "<p>Watchdog notification is missing!</p>",
             body: ''
           }
         });
