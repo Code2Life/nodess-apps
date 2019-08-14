@@ -1,0 +1,20 @@
+{
+  "name": "nodess-apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "node build/index.js zoom-alert",
+    "publish": "git commit -a -m 'publish' && git push origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code2Life/nodess-apps.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Code2Life/nodess-apps/issues"
+  },
+  "homepage": "https://github.com/Code2Life/nodess-apps#readme"
+}

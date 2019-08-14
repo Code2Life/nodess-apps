@@ -1,0 +1,1 @@
+// zip src/** to dist with version

@@ -1,0 +1,17 @@
+location: /
+method: post
+extract:
+  bodyHandlers:
+  - validate: functions/filter-and-reset-watch-dog.js
+relay:
+- name: zoom-im
+  location: ${this.url}
+  method: post
+  headers:
+    X-Zoom-Token: ${this.token}
+    Content-Type: application/json
+  body: templates/im-alert.tmpl
+response:
+  policy: 'afterRelay'
+  interceptors:
+    response-interceptor: functions/response-handler.js

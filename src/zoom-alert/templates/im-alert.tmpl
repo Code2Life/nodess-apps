@@ -1,0 +1,5 @@
+{
+  "title": "<p><img src=\\"http://filecdn.code2life.top/warning.svg\\" /><label style=\\"color:red;\\">[${this.title}]</label></p>",
+  "summary": "<p><label>Alert Status: ${ctx.request.body.status.toUpperCase()} </label><label> ${this.mergeLabels(ctx.request.body.groupLabels).join(',')}</label><br /><br />${this.generateAlerts(ctx.request.body.alerts)}<a href=\\"${ctx.request.body.externalURL}\\">Click Here to See All Alerts</a><br />${process.env.GRAFANA_URL ? ('<a href=\'' + process.env.GRAFANA_URL +  '\'>Click Here to Open Grafana</a>') : ''}</p>",
+  "body": ""
+}

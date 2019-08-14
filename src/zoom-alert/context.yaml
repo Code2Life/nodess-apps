@@ -1,0 +1,15 @@
+author: Joey
+version: 1.0.0
+inboundType: http
+outboundType: http
+initContext:
+  libraries:
+    lodash: _
+  constants:
+    url: ${process.env.ZOOM_WEBHOOK}
+    token: ${process.env.ZOOM_TOKEN}
+    title: ${process.env.ZOOM_TITLE}
+  functions: 
+    mergeLabels: functions/merge-labels.ts
+    generateAlerts: functions/generate-alerts.ts
+    log: (msg) => { console.log(msg); }
