@@ -23,7 +23,7 @@ body => {
       } catch (ex) {
         console.error(ex);
       }
-    }, 1000);
+    }, 86410000);
     body.alerts = alerts;
   }
   return true; 
