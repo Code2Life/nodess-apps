@@ -1,0 +1,22 @@
+location: /wechat/sendMsg
+method: post
+relay:
+- name: wechat-send-msg
+  location: ${this.baseURL + this.postMsgPath}
+  method: post
+  body: |-
+    {
+      "toparty" : "${this.toParty}",
+      "msgtype": "markdown",
+      "agentid" : ${this.agentId},
+      "markdown": {
+        "content": "${ctx.request.body.msg}"
+      }
+    }
+  interceptors:
+    appendAccessToken: functions/append-token.ts
+response:
+  policy: 'afterRelay'
+  headers:
+    request-id: ${ctx.reqId}
+  body: templates/response-body.tmpl

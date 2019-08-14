@@ -1,0 +1,4 @@
+{
+  relayStatusCode: "${ctx.relayResultMap.get('wechat-send-msg').status}"
+  relayResult: ${JSON.stringify(ctx.relayResultMap.get('wechat-send-msg').data, null, 2)},
+}

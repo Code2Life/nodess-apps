@@ -1,0 +1,17 @@
+author: Joey
+version: 1.0.0
+inboundType: http
+outboundType: http
+initContext:
+  libraries:
+    lodash: _
+  constants:
+    corpId: ${process.env.WECHAT_CORP_ID}
+    corpSecret: ${process.env.WECHAT_CORP_SECRET}
+    baseURL: https://qyapi.weixin.qq.com/cgi-bin
+    agentId: ${process.env.WECHAT_AGENT_ID}
+    toParty: ${process.env.WECHAT_TO_PARTY}
+    getTokenPath: /gettoken
+    postMsgPath: /message/send
+  functions: 
+    getToken: functions/get-token.ts
