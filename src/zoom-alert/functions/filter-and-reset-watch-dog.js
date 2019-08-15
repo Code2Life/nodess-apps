@@ -26,5 +26,6 @@ body => {
     }, 86410000);
     body.alerts = alerts;
   }
-  return true; 
+  // all watch dog, should be 0 after filtered
+  return body.alerts.length != 0;
 }
