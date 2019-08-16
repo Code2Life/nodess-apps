@@ -1,9 +1,9 @@
-body => { 
+(body, request) => { 
   let alerts = body.alerts.filter(x => x.labels.alertname != 'DeadMansSwitch' && x.labels.alertname != 'Watchdog');
   if (alerts.length < body.alerts.length) {
     // has DeadMansSwitch or Watchdog
     if (global.watchDog) {
-      global.clearTimeout(watchDog);
+      global.clearTimeout(global.watchDog);
     }
     this.log('skip Watchdog alerts...');
     global.watchDog = setTimeout(async () => {
@@ -26,6 +26,13 @@ body => {
     }, 86410000);
     body.alerts = alerts;
   }
-  // all watch dog, should be 0 after filtered
-  return body.alerts.length != 0;
+  if (body.alerts.length == 0) {
+    request.response.status = 200;
+    request.response.body = "OK";
+    request.ctx.finishProcessing = true;
+    return false;
+  } else {
+    this.log(`got ${body.alerts.length} alerts, start processing.`);
+    return true;
+  }
 }
