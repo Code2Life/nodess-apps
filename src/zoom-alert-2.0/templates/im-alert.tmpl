@@ -1,0 +1,28 @@
+{
+  "head": {
+    "text": "Alert Status: ${ctx.request.body.status.toUpperCase()}",
+    "style": {
+	    "color": "${ ctx.request.body.status.search(/firing/i) != -1 ? '#FF0000' : '#0D9661'}",
+	    "bold": true,
+	    "italic": false
+	  }
+  },
+  "body": [
+  	{
+      "type": "message",
+      "text": "${this.mergeLabels(ctx.request.body.groupLabels).join(',')}",
+      "style": {
+        "color": "#666",
+        "bold": false,
+        "italic": false
+      }
+    },
+    ${this.generateAlerts(ctx.request.body.alerts)}
+    {
+      "type": "message",
+      "text": "Click here to see all alerts",
+      "link": "${ctx.request.body.externalURL}"
+    }
+    ${process.env.GRAFANA_URL? ',{"type": "message","text": "Click here to open grafana","link": "' + process.env.GRAFANA_URL + '"}' : ''}
+  ]
+}
