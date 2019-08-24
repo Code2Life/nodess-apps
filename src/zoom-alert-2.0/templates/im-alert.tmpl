@@ -23,6 +23,6 @@
       "text": "Click here to see all alerts",
       "link": "${ctx.request.body.externalURL}"
     }
-    ${process.env.GRAFANA_URL? ',{"type": "message","text": "Click here to open grafana","link": "' + process.env.GRAFANA_URL + '"}' : ''}
+    ${process.env.GRAFANA_URL ? (',{"type": "message","text": "Click here to open grafana","link": "' + process.env.GRAFANA_URL + '"}') : ''}
   ]
 }

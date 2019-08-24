@@ -5,7 +5,7 @@
       return;
     }
     const name = k[0].toUpperCase() + k.substring(1);
-    strArr.push(name + ': ' + labels[k]);
+    strArr.push((name + ': ' + labels[k]).replace(/"/g, '\\\"'));
   });
   return strArr;
 };

@@ -5,10 +5,16 @@
   alerts.forEach(alert => {
     if (stop) return;
 
-    const severity = alert.labels.severity;
+    let hint = alert.labels.severity;
+
+    // show resolved ranther than level for resolved alerts
+    if (alert.status.search(/firing/) == -1) {
+      hint = 'resolved';
+    }
+
     res += `{
       "type": "message",
-      "text": "[${idx++}] ${new Date(alert.startsAt).toISOString()} ${alert.labels.alertname} ${severity ? (severity[0].toUpperCase() + severity.substring(1)) : 'Warning'}",
+      "text": "[${idx++}] ${new Date(alert.startsAt).toISOString()} ${alert.labels.alertname} ${hint ? (hint[0].toUpperCase() + hint.substring(1)) : 'Warning'}",
       "style": {
         "color": "#222222",
         "bold": true,
