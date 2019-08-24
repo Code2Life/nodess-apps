@@ -47,7 +47,7 @@
     if (alert.generatorURL != '') {
       res += `{
         "type": "message",
-        "text": "Click to view detail metrics",
+        "text": "Click here to view detail metrics",
         "link": "${alert.generatorURL}"
       },`;
     }
