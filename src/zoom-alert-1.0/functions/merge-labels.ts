@@ -4,8 +4,8 @@
     if (k == 'runbook_url') {
       return;
     }
-    k = k[0].toUpperCase() + k.substring(1);
-    strArr.push(k + ': ' + labels[k]);
+    const name = k[0].toUpperCase() + k.substring(1);
+    strArr.push(name + ': ' + labels[k]);
   });
   return strArr;
 };
