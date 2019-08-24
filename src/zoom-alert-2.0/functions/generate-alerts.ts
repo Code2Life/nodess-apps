@@ -1,9 +1,22 @@
-(alerts: any[]): string => {
+(body: any): string => {
   let res = '';
   let idx = 1;
   let stop = false;
+  let alerts = body.alerts;
   alerts.forEach(alert => {
     if (stop) return;
+
+    if (body.groupLabels && Object.keys(body.groupLabels).length > 0) {
+      res += `{
+        "type": "message",
+        "text": "${this.mergeLabels(body.groupLabels).join(',') || '' }",
+        "style": {
+          "color": "#666",
+          "bold": false,
+          "italic": false
+        }
+      },`;
+    }
 
     let hint = alert.labels.severity;
 
@@ -11,6 +24,8 @@
     if (alert.status.search(/firing/) == -1) {
       hint = 'resolved';
     }
+    let detailMsg = JSON.stringify(this.mergeLabels(alert.annotations).join('\n'));
+    detailMsg = detailMsg.substring(1, detailMsg.length - 1) || '-';
 
     res += `{
       "type": "message",
@@ -22,7 +37,7 @@
       }
     },{
       "type": "message",
-      "text": "${this.mergeLabels(alert.annotations).join('\n')}",
+      "text": "${detailMsg}",
       "style": {
         "color": "#443333",
         "bold": false,

@@ -8,16 +8,7 @@
 	  }
   },
   "body": [
-  	{
-      "type": "message",
-      "text": "${this.mergeLabels(ctx.request.body.groupLabels).join(',')}",
-      "style": {
-        "color": "#666",
-        "bold": false,
-        "italic": false
-      }
-    },
-    ${this.generateAlerts(ctx.request.body.alerts)}
+    ${this.generateAlerts(ctx.request.body)}
     {
       "type": "message",
       "text": "Click here to see all alerts",
