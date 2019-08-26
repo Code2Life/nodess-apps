@@ -20,7 +20,7 @@
 
     let hint = alert.labels.severity;
 
-    // show resolved ranther than level for resolved alerts
+    // show be resolved rather than warning level for resolved alerts
     if (alert.status.search(/firing/) == -1) {
       hint = 'resolved';
     }
