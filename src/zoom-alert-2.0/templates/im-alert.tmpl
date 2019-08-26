@@ -15,5 +15,6 @@
       "link": "${ctx.request.body.externalURL}"
     }
     ${process.env.GRAFANA_URL ? (',{"type": "message","text": "Click here to open grafana","link": "' + process.env.GRAFANA_URL + '"}') : ''}
+    ${process.env.ZOOM_PMI ? (',{"type": "message","text": "Click here to join troubleshooting meeting","link": "https://success.zoom.us/j/' + process.env.ZOOM_PMI + '"}') : ''}
   ]
 }
