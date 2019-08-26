@@ -132,10 +132,7 @@ spec:
 
 By Docker:
 
-> docker run -d --restart always -e PORT=8080 -e SERVER_VERSION=1.0.9 -e DEBUG=server:* \
- -e ZOOM_WEBHOOK=xxxx -e ZOOM_TOKEN=xxx -e GRAFANA_URL=xxx -e ZOOM_PMI=xxx\
- -e PRELOAD_CONF=https://raw.githubusercontent.com/Code2Life/nodess-apps/master/dist/zoom-alert-2.0.zip
- code2life/http-adapter:1.0.2
+> docker run -d --restart always --name alert-adapter -e PORT=8080 -e SERVER_VERSION=1.0.9 -e DEBUG="server:*" -e ZOOM_WEBHOOK="https://websdasdsa:9999/ada" -e ZOOM_TOKEN="xxxx" -e GRAFANA_URL="https://cxzccsa:2233" -e ZOOM_PMI="7777" -e PRELOAD_CONF="https://raw.githubusercontent.com/Code2Life/nodess-apps/master/dist/zoom-alert-2.0.zip" code2life/http-adapter:1.0.2
 
 Some environment variables to replace in Kubernetes Yaml/Docker
 - ZOOM_WEBHOOK: Endpoint provided by Zoom Incoming Webhook
