@@ -6,12 +6,11 @@ async (respObj, ctx) => {
     return
   }
   this.log(`handle response of [req-${ctx.reqId}] - ${relayRes.status}\n ${JSON.stringify(relayRes.data)}`);
-  if (relayRes.status == 200 && relayRes.data && relayRes.data.success)  {
+  if (relayRes.status == 200 && relayRes.data)  {
     respObj.statusCode = 200;
     respObj.body = 'OK';
   } else {
     respObj.statusCode = 400;
-    respObj.body = 'Fail';
+    respObj.body = `Fail: ${JSON.stringify(relayRes.data)}`;
   }
-  
 }
