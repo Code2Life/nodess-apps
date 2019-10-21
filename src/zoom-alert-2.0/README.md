@@ -154,6 +154,7 @@ curl -X POST http://your.alertmanager:9093/api/v1/alerts \
   -H 'Content-Type: application/json' \
   -d '[{
 "labels": {
+"job": "test-prometheus-job",
 "alertname": "test_alert",
 "service": "my-service",
 "severity": "critical",
